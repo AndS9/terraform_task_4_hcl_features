@@ -1,9 +1,5 @@
-output "Vms_name1" {
-  value = upper(azurerm_virtual_machine.main[0].name)
-}
-
-output "Vms_name2" {
-  value = upper(azurerm_virtual_machine.main[1].name)
+output "Vms_name" {
+  value = [for vm in azurerm_virtual_machine.main : upper(vm.name)]
 }
 
 output "Vms_tags" {
@@ -14,7 +10,5 @@ output "Vms_tags" {
 }
 
 output "Vms_id" {
-  value = [
-    for vm in azurerm_virtual_machine.main : vm.id
-  ]
+  value = [for vm in azurerm_virtual_machine.main : vm.id]
 }
