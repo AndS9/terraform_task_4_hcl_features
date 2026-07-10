@@ -5,9 +5,10 @@ output "Vms_name" {
 }
 
 output "tags" {
-  value = [
-    for vm in azurerm_virtual_machine.main : vm.tags
-  ]
+  value = join(",", [
+    for vm in azurerm_virtual_machine.main :
+    jsonencode(vm.tags)
+  ])
 }
 
 output "Vms_id" {

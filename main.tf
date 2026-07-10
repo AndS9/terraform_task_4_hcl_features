@@ -7,11 +7,11 @@ resource "azurerm_virtual_machine" "main" {
   lifecycle {
     prevent_destroy = true
   }
-  count                 = length(local.networks_name)
+  count                 = length(local.nic_names)
   name                  = "${var.prefix}-vm-${count.index}"
   location              = azurerm_resource_group.example.location
   resource_group_name   = azurerm_resource_group.example.name
-  network_interface_ids = [azurerm_network_interface.main[local.networks_name[count.index]].id]
+  network_interface_ids = [azurerm_network_interface.main[local.nic_names[count.index]].id]
   vm_size               = "Standard_D2s_v3"
 
   storage_image_reference {
