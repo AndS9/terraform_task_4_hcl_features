@@ -1,7 +1,9 @@
-output "Vms_name" {
-  value = upper(join(",", [
-    for vm in azurerm_virtual_machine.main :vm.name
-  ]))
+output "Vms_name1" {
+  value = upper(azurerm_virtual_machine.main[0].name)
+}
+
+output "Vms_name2" {
+  value = upper(azurerm_virtual_machine.main[1].name)
 }
 
 output "Vms_tags" {
